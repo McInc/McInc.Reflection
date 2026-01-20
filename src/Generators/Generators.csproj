@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <AssemblyName>McInc.Reflection.Generators</AssemblyName>
+	  <RootNamespace>McInc.Reflection</RootNamespace>
+
+	  <!-- 👇 Source generators must target netstandard 2.0 -->
+      <TargetFramework>netstandard2.0</TargetFramework>
+      <!-- 👇 We don't want to reference the source generator dll directly in consuming projects -->
+    
+      <!-- 👇 New project, why not! -->
+      <Nullable>enable</Nullable>
+      <ImplicitUsings>true</ImplicitUsings>
+      <LangVersion>Latest</LangVersion>
+      
+  </PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Abstractions\Abstractions.csproj" />
+	</ItemGroup>
+
+	<!-- The following libraries include the source generator interfaces and types we need -->
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all" />
+    </ItemGroup>
+
+    <!-- This ensures the library will be packaged as a source generator when we use `dotnet pack` -->
+    <ItemGroup>
+        <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+
+        <!-- Pack the attributes dll in the analyzers/dotnet/cs path -->
+        <None Include="$(OutputPath)\McInc.Reflection.Abstractions.dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+
+        <!-- Pack the attributes dll in the lib\netstandard2.0 path -->
+        <None Include="$(OutputPath)\McInc.Reflection.Abstractions.dll" Pack="true" PackagePath="lib\netstandard2.0" Visible="true" />
+    </ItemGroup>
+    
+</Project>

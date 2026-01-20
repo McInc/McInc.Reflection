@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <AssemblyName>McInc.Reflection.Abstractions</AssemblyName>
+	  <RootNamespace>McInc.Reflection</RootNamespace>
+
+	  <TargetFrameworks>netstandard2.0; net10.0</TargetFrameworks>
+  </PropertyGroup>
+
+</Project>
