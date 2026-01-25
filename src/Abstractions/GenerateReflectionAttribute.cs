@@ -6,11 +6,13 @@ namespace McInc.Reflection
         Inherited = false, AllowMultiple = false)]
     public sealed class GenerateReflectionAttribute : Attribute
     {
-        public readonly bool IncludeInternals;
+        
 
-        public GenerateReflectionAttribute(bool includeInternals = false)
-        {
-            this.IncludeInternals = includeInternals;
-        }
+        //public GenerateReflectionAttribute(bool includeInternals = false)
+        //{
+        //    this.IncludeInternals = includeInternals;
+        //}
+
+        public bool IncludeInternals { get; set; }
     }
 }

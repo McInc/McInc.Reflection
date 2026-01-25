@@ -80,20 +80,14 @@ public class ReflectionGenerator : IIncrementalGenerator
                     attribute.AttributeClass?.ToDisplayString()))
                 continue;
 
-            var constructorArgs = attribute.ConstructorArguments;
-            // ReSharper disable once ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
-            foreach (var arg in constructorArgs)
+            foreach (var namedArgument in attribute.NamedArguments)
             {
-                if (arg.Kind == TypedConstantKind.Error)
-                    // have an error, so don't try and do any generation
-                    return null;
-            }
+                // Is this the ExtensionClassName argument?
+                if (namedArgument.Key != nameof(GenerateReflectionAttribute.IncludeInternals)
+                    || namedArgument.Value.Value is not bool incl)
+                    continue;
 
-            switch (constructorArgs.Length)
-            {
-                case 1:
-                    includeInternals = (bool)constructorArgs[0].Value;
-                    break;
+                includeInternals = incl;
             }
         }
 
