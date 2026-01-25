@@ -3,11 +3,9 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/). Copyright 2017 Datadog, Inc.
 // </copyright>
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 
-namespace McInc.Reflection;
+namespace McInc.Reflection.Utilities;
 
 /// <summary>
 /// An immutable, equatable array. This is equivalent to <see cref="Array"/> but with value equality support.
@@ -27,13 +25,13 @@ public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IEnume
     /// <param name="array">The input array to wrap.</param>
     public EquatableArray(T[] array)
     {
-        _array = array;
+        this._array = array;
     }
 
     /// <summary>
     /// Gets the length of the array, or 0 if the array is null
     /// </summary>
-    public int Count => _array?.Length ?? 0;
+    public int Count => this._array?.Length ?? 0;
 
     /// <summary>
     /// Checks whether two <see cref="EquatableArray{T}"/> values are the same.
@@ -60,7 +58,7 @@ public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IEnume
     /// <inheritdoc/>
     public bool Equals(EquatableArray<T> array)
     {
-        return AsSpan().SequenceEqual(array.AsSpan());
+        return this.AsSpan().SequenceEqual(array.AsSpan());
     }
 
     /// <inheritdoc/>
@@ -72,7 +70,7 @@ public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IEnume
     /// <inheritdoc/>
     public override int GetHashCode()
     {
-        if (_array is not T[] array)
+        if (this._array is not T[] array)
         {
             return 0;
         }
@@ -93,7 +91,7 @@ public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IEnume
     /// <returns>A <see cref="ReadOnlySpan{T}"/> wrapping the current items.</returns>
     public ReadOnlySpan<T> AsSpan()
     {
-        return _array.AsSpan();
+        return this._array.AsSpan();
     }
 
     /// <summary>
@@ -102,18 +100,18 @@ public readonly struct EquatableArray<T> : IEquatable<EquatableArray<T>>, IEnume
     /// <returns>Returns the underlying array.</returns>
     public T[]? AsArray()
     {
-        return _array;
+        return this._array;
     }
 
     /// <inheritdoc/>
     IEnumerator<T> IEnumerable<T>.GetEnumerator()
     {
-        return ((IEnumerable<T>)(_array ?? Array.Empty<T>())).GetEnumerator();
+        return ((IEnumerable<T>)(this._array ?? Array.Empty<T>())).GetEnumerator();
     }
 
     /// <inheritdoc/>
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return ((IEnumerable<T>)(_array ?? Array.Empty<T>())).GetEnumerator();
+        return ((IEnumerable<T>)(this._array ?? Array.Empty<T>())).GetEnumerator();
     }
 }

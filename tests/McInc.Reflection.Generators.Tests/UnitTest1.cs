@@ -1,5 +1,4 @@
-﻿using VerifyXunit;
-namespace McInc.Reflection.Generators.Tests;
+﻿namespace McInc.Reflection.Generators.Tests;
 
 
 public class UnitTest1
@@ -15,7 +14,7 @@ public class UnitTest1
                      namespace Test12345;
                      
                      [GenerateReflection]
-                     public struct SelfId
+                     public class SelfId
                      {
                          public int Id;
                          public static int Id2;
@@ -26,6 +25,8 @@ public class UnitTest1
                          public int B{get;}
                          public int C{set=> this.Id = value;}
                          public int D{get; init;}
+                         public string Gatto{get; set;}
+                         internal string Gatto2{get; set;}
                      }
                      """;
 

@@ -1,7 +1,6 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/Abstractions/Abstractions.csproj" />
-    <Project Path="src/CSharp/CSharp.csproj" />
     <Project Path="src/Generators/Generators.csproj" />
   </Folder>
   <Folder Name="/tests/">

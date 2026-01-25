@@ -21,6 +21,7 @@
 
 	<!-- The following libraries include the source generator interfaces and types we need -->
     <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2025.2.4" PrivateAssets="all" />
         <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2" PrivateAssets="all" />
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all" />
     </ItemGroup>
