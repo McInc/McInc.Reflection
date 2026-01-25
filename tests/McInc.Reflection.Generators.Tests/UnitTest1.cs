@@ -4,7 +4,7 @@
 public class UnitTest1
 {
     [Fact]
-    public Task GeneratesEnumExtensionsCorrectly()
+    public Task GeneratesTypeReflectionCorrectly()
     {
         // The source code to test
         var source = """
