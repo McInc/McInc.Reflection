@@ -8,12 +8,11 @@ public class UnitTest1
     {
         // The source code to test
         var source = """
-
                      using McInc.Reflection;
 
                      namespace Test12345;
                      
-                     [GenerateReflection]
+                     [GenerateReflection(IncludeInternals = false)]
                      public class SelfId
                      {
                          public int Id;
